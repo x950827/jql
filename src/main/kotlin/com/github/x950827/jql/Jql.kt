@@ -1,4 +1,4 @@
-package com.github.daniiltagan.jql
+package com.github.x950827.jql
 
 fun withJql(ctx: Jql.Builder.() -> Unit) = Jql.Builder().apply(ctx).build()
 

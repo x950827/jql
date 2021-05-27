@@ -1,4 +1,4 @@
-package com.github.daniiltagan.jql
+package com.github.x950827.jql
 
 open class Field {
     lateinit var value: String

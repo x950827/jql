@@ -1,4 +1,4 @@
-package com.github.daniiltagan.jql
+package com.github.x950827.jql
 
 enum class OrderDir(val value: String) {
     ASC("asc"),

@@ -1,4 +1,4 @@
-package com.github.daniiltagan.jql
+package com.github.x950827.jql
 
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
