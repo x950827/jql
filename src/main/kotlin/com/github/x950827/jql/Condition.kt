@@ -43,174 +43,152 @@ open class Condition private constructor(
             return this.field!!
         }
 
-        fun customField(fieldId: Int): Field {
-            this.field = Field.custom(fieldId)
+        fun field(field: Field): Field {
+            this.field = field
             return this.field!!
         }
 
-        fun project(): Field {
-            this.field = Field.PROJECT
-            return this.field!!
+        fun customField(fieldId: Int) = field(Field.custom(fieldId))
+        fun project() = field(Field.PROJECT)
+        fun status() = field(Field.STATUS)
+        fun created() = field(Field.CREATED)
+        fun updated() = field(Field.UPDATED)
+        fun assignee() = field(Field.ASSIGNEE)
+        fun reporter() = field(Field.REPORTER)
+        fun issueType() = field(Field.ISSUE_TYPE)
+        fun priority() = field(Field.PRIORITY)
+
+        private fun expression(operator: Operator, value: Value) {
+            this.operator = operator
+            this.value = value
         }
 
         fun Field.empty() {
-            operator = Operator.EQUALS
-            this@Builder.value = Value.EMPTY
+            expression(Operator.EQUALS, Value.EMPTY)
         }
 
         fun Field.notEmpty() {
-            operator = Operator.NOT_EQUALS
-            this@Builder.value = Value.EMPTY
+            expression(Operator.NOT_EQUALS, Value.EMPTY)
         }
 
         fun Field.isEmpty() {
-            operator = Operator.IS
-            this@Builder.value = Value.EMPTY
+            expression(Operator.IS, Value.EMPTY)
         }
 
         fun Field.isNotEmpty() {
-            operator = Operator.IS_NOT
-            this@Builder.value = Value.EMPTY
+            expression(Operator.IS_NOT, Value.EMPTY)
         }
 
         fun Field.`null`() {
-            operator = Operator.EQUALS
-            this@Builder.value = Value.NULL
+            expression(Operator.EQUALS, Value.NULL)
         }
 
         fun Field.notNull() {
-            operator = Operator.NOT_EQUALS
-            this@Builder.value = Value.NULL
+            expression(Operator.NOT_EQUALS, Value.NULL)
         }
 
         fun Field.isNull() {
-            operator = Operator.IS
-            this@Builder.value = Value.NULL
+            expression(Operator.IS, Value.NULL)
         }
 
         fun Field.isNotNull() {
-            operator = Operator.IS_NOT
-            this@Builder.value = Value.NULL
+            expression(Operator.IS_NOT, Value.NULL)
         }
 
         fun Field.eq(value: String) {
-            operator = Operator.EQUALS
-            this@Builder.value = Value.fromString(value)
+            expression(Operator.EQUALS, Value.fromString(value))
         }
 
         fun Field.eq(date: LocalDate) {
-            operator = Operator.EQUALS
-            this@Builder.value = Value.fromDate(date)
+            expression(Operator.EQUALS, Value.fromDate(date))
         }
 
         fun Field.eq(dateTime: LocalDateTime) {
-            operator = Operator.EQUALS
-            this@Builder.value = Value.fromDateTime(dateTime)
+            expression(Operator.EQUALS, Value.fromDateTime(dateTime))
         }
 
         fun Field.notEq(value: String) {
-            operator = Operator.NOT_EQUALS
-            this@Builder.value = Value.fromString(value)
+            expression(Operator.NOT_EQUALS, Value.fromString(value))
         }
 
         fun Field.notEq(date: LocalDate) {
-            operator = Operator.NOT_EQUALS
-            this@Builder.value = Value.fromDate(date)
+            expression(Operator.NOT_EQUALS, Value.fromDate(date))
         }
 
         fun Field.notEq(dateTime: LocalDateTime) {
-            operator = Operator.NOT_EQUALS
-            this@Builder.value = Value.fromDateTime(dateTime)
+            expression(Operator.NOT_EQUALS, Value.fromDateTime(dateTime))
         }
 
         fun Field.`in`(array: Collection<String>) {
-            operator = Operator.IN
-            this@Builder.value = Value.fromArray(array)
+            expression(Operator.IN, Value.fromArray(array))
         }
 
         fun Field.`in`(vararg value: String) {
-            operator = Operator.IN
-            this@Builder.value = Value.fromArray(value.toList())
+            expression(Operator.IN, Value.fromArray(value.toList()))
         }
 
         fun Field.notIn(array: Collection<String>) {
-            operator = Operator.NOT_IN
-            this@Builder.value = Value.fromArray(array)
+            expression(Operator.NOT_IN, Value.fromArray(array))
         }
 
         fun Field.notIn(vararg value: String) {
-            operator = Operator.NOT_IN
-            this@Builder.value = Value.fromArray(value.toList())
+            expression(Operator.NOT_IN, Value.fromArray(value.toList()))
         }
 
         fun Field.changedAfter(date: LocalDate) {
-            operator = Operator.CHANGED_AFTER
-            this@Builder.value = Value.fromDate(date)
+            expression(Operator.CHANGED_AFTER, Value.fromDate(date))
         }
 
         fun Field.changedAfter(dateTime: LocalDateTime) {
-            operator = Operator.CHANGED_AFTER
-            this@Builder.value = Value.fromDateTime(dateTime)
+            expression(Operator.CHANGED_AFTER, Value.fromDateTime(dateTime))
         }
 
         fun Field.more(value: String) {
-            operator = Operator.MORE
-            this@Builder.value = Value.fromString(value)
+            expression(Operator.MORE, Value.fromString(value))
         }
 
         fun Field.more(date: LocalDate) {
-            operator = Operator.MORE
-            this@Builder.value = Value.fromDate(date)
+            expression(Operator.MORE, Value.fromDate(date))
         }
 
         fun Field.more(dateTime: LocalDateTime) {
-            operator = Operator.MORE
-            this@Builder.value = Value.fromDateTime(dateTime)
+            expression(Operator.MORE, Value.fromDateTime(dateTime))
         }
 
         fun Field.moreEq(value: String) {
-            operator = Operator.MORE_OR_EQUAL
-            this@Builder.value = Value.fromString(value)
+            expression(Operator.MORE_OR_EQUAL, Value.fromString(value))
         }
 
         fun Field.moreEq(date: LocalDate) {
-            operator = Operator.MORE_OR_EQUAL
-            this@Builder.value = Value.fromDate(date)
+            expression(Operator.MORE_OR_EQUAL, Value.fromDate(date))
         }
 
         fun Field.moreEq(dateTime: LocalDateTime) {
-            operator = Operator.MORE_OR_EQUAL
-            this@Builder.value = Value.fromDateTime(dateTime)
+            expression(Operator.MORE_OR_EQUAL, Value.fromDateTime(dateTime))
         }
 
         fun Field.less(value: String) {
-            operator = Operator.LESS
-            this@Builder.value = Value.fromString(value)
+            expression(Operator.LESS, Value.fromString(value))
         }
 
         fun Field.less(date: LocalDate) {
-            operator = Operator.LESS
-            this@Builder.value = Value.fromDate(date)
+            expression(Operator.LESS, Value.fromDate(date))
         }
 
         fun Field.less(dateTime: LocalDateTime) {
-            operator = Operator.LESS
-            this@Builder.value = Value.fromDateTime(dateTime)
+            expression(Operator.LESS, Value.fromDateTime(dateTime))
         }
 
         fun Field.lessEq(value: String) {
-            operator = Operator.LESS_THAN_OR_EQUAL
-            this@Builder.value = Value.fromString(value)
+            expression(Operator.LESS_THAN_OR_EQUAL, Value.fromString(value))
         }
 
         fun Field.lessEq(date: LocalDate) {
-            operator = Operator.LESS_THAN_OR_EQUAL
-            this@Builder.value = Value.fromDate(date)
+            expression(Operator.LESS_THAN_OR_EQUAL, Value.fromDate(date))
         }
 
         fun Field.lessEq(dateTime: LocalDateTime) {
-            operator = Operator.LESS_THAN_OR_EQUAL
-            this@Builder.value = Value.fromDateTime(dateTime)
+            expression(Operator.LESS_THAN_OR_EQUAL, Value.fromDateTime(dateTime))
         }
 
         fun build(): Condition {
