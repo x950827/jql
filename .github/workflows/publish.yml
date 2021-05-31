@@ -36,6 +36,9 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       # Runs a set of commands using the runners shell
       - name: Publish package
         run: ./gradlew publish closeAndReleaseStagingRepository
