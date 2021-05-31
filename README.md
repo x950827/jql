@@ -1,6 +1,7 @@
 # JQL
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.x950827/jql/badge.svg?style=for-the-badge)](https://maven-badges.herokuapp.com/maven-central/io.github.x950827/jql/badge.svg?style=for-the-badge)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.x950827/jql/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.x950827/jql/badge.svg?style=for-the-badge)
+[![Tests](https://github.com/x950827/jql/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/x950827/jql/actions/workflows/tests.yml)
 
 
 This library provides a simple Jira Query Language (JQL) builder for kotlin projects.
